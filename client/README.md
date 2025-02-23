@@ -1,4 +1,4 @@
-Hotel Room Booking Client Application
+## Hotel Room Booking Client Application
 
 ## Available Scripts
 
