@@ -46,10 +46,16 @@ Your app is ready to be deployed!
 | /api/v1/bookings/:id   | DELETE   | Delete the booking record   |
 
 
+## Dockerization
+  ### Server application is dockerized can build & run Dockerfile.
+  ### To run server along with mongodb build and run docker-compose.yaml file. 
+
 ## Other Details
 #### winston logging is implemented and daily rotate file is enabled so you can check logs on the running date as well as earlier dates.
 
 #### Unit test case returned for all the apis. Test files are under server/test folder.
+
+
 
 
 
