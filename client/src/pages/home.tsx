@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import LocationFilter from "../components/LocationFilter";
-import HotelCard from "../components/HotelCard";
+import LocationFilter from "../components/LocationFilter/LocationFilter";
+import HotelCard from "../components/HotelCard/HotelCard";
 import hotelService from "../services/hotelService";
 
 interface Hotel {

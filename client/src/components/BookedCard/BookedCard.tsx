@@ -8,34 +8,13 @@ import {
   Rating,
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Popup from "./BookingPopup";
-import hotel1 from "../assets/images/hotel1.jpg";
-//import hotel2 from "../assets/images/hotel2.jpg"
-//import hotel3 from "../assets/images/hotel3.jpg"
-import "../assets/styles/common.css";
-import ConfirmationModel from "./ConfirmationModel";
-import bookingService from "../services/bookingService";
-
-interface Hotel {
-  hotelId: number;
-  bookingid: number;
-  checkInDate: Date;
-  checkOutDate: Date;
-  name: string;
-  description: string;
-  location: string;
-  rooms: number;
-}
-
-interface Bookings {
-  bookingId?: number;
-  checkInDate: Date;
-  checkOutDate: Date;
-  hotelId: number;
-  userId: string;
-  rooms: number;
-  status: string;
-}
+import Popup from "../BookingPopup/BookingPopup";
+import hotel1 from "../../assets/images/hotel1.jpg";
+import "../../assets/styles/common.css";
+import ConfirmationModel from "../common/ConfirmationModel";
+import bookingService from "../../services/bookingService";
+import { Hotel, Bookings } from "./interface";
+import { USER_ID } from "../../constants";
 
 const formatDate = (dateString: string): string => {
   return dateString?.split("T")[0];
@@ -58,7 +37,7 @@ function BookedCard(props: Hotel) {
       checkOutDate: props.checkOutDate ?? new Date(),
       hotelId: props.hotelId,
       bookingId: props.bookingid,
-      userId: "demo",
+      userId: USER_ID,
       rooms: props.rooms || 0,
       status: "CANCELED",
     };

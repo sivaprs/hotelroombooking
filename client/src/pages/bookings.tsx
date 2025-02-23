@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import bookingService from "../services/bookingService";
-import BookedCard from "../components/BookedCard";
+import BookedCard from "../components/BookedCard/BookedCard";
+import { USER_ID } from "../constants";
 
 function BookingList() {
   const [booked, setBooked] = useState([]);
 
   const getBookings = async () => {
     try {
-      const { data } = await bookingService.getBookings("demo");
+      const { data } = await bookingService.getBookings(USER_ID);
       setBooked(data);
     } catch (e) {
       console.log("error", e);

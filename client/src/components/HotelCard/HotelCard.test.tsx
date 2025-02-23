@@ -1,6 +1,5 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import HotelCard from "./HotelCard";
+import HotelCard from "../HotelCard/HotelCard";
 
 test("renders learn react link", () => {
   render(

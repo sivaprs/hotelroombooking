@@ -2,13 +2,16 @@ import { Request, Response } from "express";
 import Booking from "../models/booking.model";
 import Hotel from "../models/hotel.model";
 import Location from "../models/location.model";
+import logger from "../utils/logger";
 
 export const createBooking = async (req: Request, res: Response) => {
   try {
     const booking = new Booking(req.body);
     await booking.save();
+    logger.info("Booked successfully");
     res.status(201).json(booking);
   } catch (error: any) {
+    logger.error("Booking failed", error.message);
     res.status(500).json({ error: error.message });
   }
 };
@@ -33,6 +36,7 @@ export const getBookings = async (req: Request, res: Response) => {
 
     res.json(result);
   } catch (error: any) {
+    logger.error("Booking fetch failed", error.message);
     res.status(500).json({ error: error.message });
   }
 };
@@ -62,6 +66,7 @@ export const getUserBookings = async (req: Request, res: Response) => {
 
     res.json(result);
   } catch (error: any) {
+    logger.error("Booking fetch failed", error.message);
     res.status(500).json({ error: error.message });
   }
 };
@@ -75,6 +80,7 @@ export const updateBooking = async (req: Request, res: Response) => {
     );
     res.json(updatedBooking);
   } catch (error: any) {
+    logger.error("Booking update failed", error.message);
     res.status(500).json({ error: error.message });
   }
 };
@@ -84,6 +90,7 @@ export const cancelBooking = async (req: Request, res: Response) => {
     await Booking.findOneAndDelete({ bookingId: req.params.id }, req.body);
     res.json({ message: "Booking cancelled" });
   } catch (error: any) {
+    logger.error("Booking cancel failed", error.message);
     res.status(500).json({ error: error.message });
   }
 };

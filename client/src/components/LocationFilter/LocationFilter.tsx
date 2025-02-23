@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import LocationService from "../services/locationService";
+import LocationService from "../../services/locationService";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-
-interface LocationFilterProps {
-  selectedLocation: number;
-  onChange: (location: number) => void;
-}
-
-interface Location {
-  _id: number;
-  name: string;
-}
+import { Location, LocationFilterProps } from "./interface";
 
 const LocationFilter: React.FC<LocationFilterProps> = ({
   selectedLocation,

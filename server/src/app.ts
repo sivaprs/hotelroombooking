@@ -1,7 +1,8 @@
-import express from "express";
+import express, { Request, Response, NextFunction, Errback } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import logger from "./utils/logger";
 import hotelRoutes from "./routes/hotel.routes";
 import bookingRoutes from "./routes/booking.routes";
 import locationsRoutes from "./routes/location.routes";
@@ -15,9 +16,14 @@ app.use("/api/v1/hotels", hotelRoutes);
 app.use("/api/v1/bookings", bookingRoutes);
 app.use("/api/v1/locations", locationsRoutes);
 
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  logger.error(err.message); // Logs error to console & file
+  res.status(500).json({ message: err.message });
+});
+
 mongoose
   .connect(process.env.MONGO_URI as string)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+  .then(() => logger.info("MongoDB Connected"))
+  .catch((err) => logger.error(err));
 
 export default app;

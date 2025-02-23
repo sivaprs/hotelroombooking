@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Hotel from "../models/hotel.model";
 import Location from "../models/location.model";
+import logger from "../utils/logger";
 
 export const getHotels = async (req: Request, res: Response) => {
   try {
@@ -28,6 +29,7 @@ export const getHotels = async (req: Request, res: Response) => {
     ]);
     res.json(hotels);
   } catch (error: any) {
+    logger.error("hotel fetch failed", error.message);
     res.status(500).json({ error: error.message });
   }
 };
@@ -41,6 +43,7 @@ export const getHotelsByLocation = async (req: Request, res: Response) => {
 
     res.json({ hotels, locationName: locations.name });
   } catch (error: any) {
+    logger.error("hotel fetch by location failed", error.message);
     res.status(500).json({ error: error.message });
   }
 };

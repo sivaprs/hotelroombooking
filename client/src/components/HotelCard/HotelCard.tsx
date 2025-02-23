@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import { Box, Card, CardContent, Button, Rating } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Popup from "./BookingPopup";
-import hotel1 from "../assets/images/hotel1.jpg";
+import Popup from "../BookingPopup/BookingPopup";
+import hotel1 from "../../assets/images/hotel1.jpg";
 //import hotel2 from "../assets/images/hotel2.jpg"
 //import hotel3 from "../assets/images/hotel3.jpg"
-import "../assets/styles/common.css";
-
-interface Hotel {
-  id: number;
-  name: string;
-  description: string;
-  location: string;
-}
+import "../../assets/styles/common.css";
+import { Hotel } from "./interface";
 
 function HotelBox(props: Hotel) {
   const [selectedHotel, setSelectedHotel] = useState<{
