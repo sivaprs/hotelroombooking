@@ -2,6 +2,10 @@ import { Request, Response } from "express";
 import Location from "../models/location.model";
 import logger from "../utils/logger";
 
+/** 
+  Method to fetch the list of locations in the DB
+**/
+
 export const getLocations = async (req: Request, res: Response) => {
   try {
     const locations = await Location.find({});

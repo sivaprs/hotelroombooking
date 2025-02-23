@@ -3,6 +3,10 @@ import Hotel from "../models/hotel.model";
 import Location from "../models/location.model";
 import logger from "../utils/logger";
 
+/** 
+  Method to fetch all hotels in the DB
+**/
+
 export const getHotels = async (req: Request, res: Response) => {
   try {
     const hotels = await Hotel.aggregate([
@@ -33,6 +37,10 @@ export const getHotels = async (req: Request, res: Response) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+/** 
+  Method to fetch hotels based on the location id
+**/
 
 export const getHotelsByLocation = async (req: Request, res: Response) => {
   try {

@@ -4,6 +4,10 @@ import Hotel from "../models/hotel.model";
 import Location from "../models/location.model";
 import logger from "../utils/logger";
 
+/** 
+  Method to create new booking
+**/
+
 export const createBooking = async (req: Request, res: Response) => {
   try {
     const booking = new Booking(req.body);
@@ -15,6 +19,10 @@ export const createBooking = async (req: Request, res: Response) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+/** 
+  Method to fetch booking details based on the booking id
+**/
 
 export const getBookings = async (req: Request, res: Response) => {
   try {
@@ -46,6 +54,10 @@ export const getBookings = async (req: Request, res: Response) => {
       .json({ error: error instanceof Error ? error.message : error });
   }
 };
+
+/** 
+  Method to fetch all booking details based on the user id
+**/
 
 export const getUserBookings = async (req: Request, res: Response) => {
   try {
