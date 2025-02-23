@@ -10,7 +10,7 @@ They can able to edit the reservation as well as they can cancel the reservation
 
 ### Client Application
 #### Tech Stack
-  1. ReactJS (version 19)
+  1. ReactJS + Typescript (version 19)
   2. Material UI (version 5)
 
  Details about how to run and test are mentioned in Readme in the client folder along with Source files in client folder.
@@ -18,7 +18,7 @@ They can able to edit the reservation as well as they can cancel the reservation
 ### Server Application
 #### Tech Stack
   1. NodeJS (version v20.14.0)
-  2. Express Framework (version 4.21)
+  2. Express Framework + Typescript (version 4.21)
   3. Mongoose (for DB interaction)
   4. Winston (for logging)
  
