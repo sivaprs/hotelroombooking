@@ -2,7 +2,7 @@
 
 It is a web application where user can able to search hotels based on the Location and reserve the rooms.
 
-They can able to edit the reservation as well as they can cancel the booking.
+They can able to edit the reservation as well as they can cancel the reservation.
 
 ### High level architecture
  ![image](https://github.com/user-attachments/assets/ac19315d-6033-459e-9997-ed4d92cab661)
