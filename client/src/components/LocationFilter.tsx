@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import LocationService from "../services/locationService";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -9,29 +9,28 @@ interface LocationFilterProps {
 }
 
 interface Location {
-    _id: number;
-    name: string;
-  }
+  _id: number;
+  name: string;
+}
 
+const LocationFilter: React.FC<LocationFilterProps> = ({
+  selectedLocation,
+  onChange,
+}) => {
+  const [locations, setLocations] = useState<Array<Location>>([]);
 
-const LocationFilter: React.FC<LocationFilterProps> = ({ selectedLocation, onChange }) => {
-
-   const [locations, setLocations] = useState<Array<Location>>([]);  
-
-   const getLocations = async() => {
+  const getLocations = async () => {
     try {
-        const {data} = await LocationService.getLocations();
-        setLocations(data);
-     } catch (error) {
-         console.error(error)
-     }
-   };
+      const { data } = await LocationService.getLocations();
+      setLocations(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  useEffect(()=>{
-    
+  useEffect(() => {
     getLocations();
-
-  },[])
+  }, []);
 
   return (
     <FormControl fullWidth>
@@ -40,12 +39,12 @@ const LocationFilter: React.FC<LocationFilterProps> = ({ selectedLocation, onCha
         value={selectedLocation}
         onChange={(event) => onChange(Number(event.target.value))}
       >
-          
-        {locations.length > 0 &&  locations.map((location) => (
-          <MenuItem key={location._id} value={location._id}>
-           <LocationOnIcon color="secondary" /> {location.name}
-          </MenuItem>
-        ))}
+        {locations.length > 0 &&
+          locations.map((location) => (
+            <MenuItem key={location._id} value={location._id}>
+              <LocationOnIcon color="secondary" /> {location.name}
+            </MenuItem>
+          ))}
       </Select>
     </FormControl>
   );

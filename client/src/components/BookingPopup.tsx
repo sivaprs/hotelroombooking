@@ -34,10 +34,8 @@ const BookingPopup: React.FC<BookingPopupProps> = ({ open, onClose, title, hotel
     const [checkIn, setCheckIn] = useState<Dayjs | null>(dayjs(checkInDate));
     const [checkOut, setCheckOut] = useState<Dayjs | null>(dayjs(checkOutDate));
     const [selectedRoom, setSelectedRoom] = useState<number>(rooms || 0);
-     const [opens, setOpens] = useState(false);
-    
-       const handleOpen = () => setOpens(true);
-       const handleClose = () => {
+    const [opens, setOpens] = useState(false);
+    const handleClose = () => {
              setOpens(false);
        };
     const onConfirm = async() => {
@@ -52,8 +50,7 @@ const BookingPopup: React.FC<BookingPopupProps> = ({ open, onClose, title, hotel
                 status: "BOOKED"
             }
             try {
-                const {data} = await bookingService.createBooking(obj);
-                //onClose();
+                await bookingService.createBooking(obj);
                 setOpens(true);
             } catch (e) {
                 console.error(e);

@@ -1,7 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../utils/AppError";
 
-const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunction): Response => {
+const errorHandler = (
+  err: AppError,
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Response => {
   console.error("Error:", err.message);
 
   return res.status(err.statusCode || 500).json({
