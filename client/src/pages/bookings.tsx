@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import bookingService from "../services/bookingService";
 import BookedCard from "../components/BookedCard";
 
-function Bookings() {
+function BookingList() {
   const [hotels, setHotels] = useState([]);
   const [booked, setBooked] = useState({});
 
@@ -28,7 +28,7 @@ function Bookings() {
   }
   useEffect(() => {
      getBookings();
-     getBookingsById(2);
+     //getBookingsById(2);
           
   }, []) 
 
@@ -51,4 +51,4 @@ function Bookings() {
   );
 }
 
-export default Bookings;
+export default BookingList;

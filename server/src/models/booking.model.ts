@@ -8,6 +8,7 @@ interface IBooking {
   checkInDate: Date;
   checkOutDate: Date;
   rooms: number;
+  status: string;
 }
 
 const bookingSchema = new mongoose.Schema<IBooking>({
@@ -17,6 +18,7 @@ const bookingSchema = new mongoose.Schema<IBooking>({
   checkInDate: { type: Date, required: true },
   checkOutDate: { type: Date, required: true },
   rooms: { type: Number, required: true },
+  status: { type: String, required: true },
 });
 
 bookingSchema.pre("save", async function (next) {

@@ -1,0 +1,56 @@
+.heading {
+    font-size: 1.5rem;
+    color: #003b95;
+}
+
+.description {
+    font-size: 0.75rem;
+    color: #008234;
+}
+
+.type {
+    font-size: 1rem;
+    color: #008234;
+}
+
+.rate {
+    font-size: 1rem;
+    color:#d4111e;
+    margin-top: 20px;
+}
+
+.blueHighlight {
+    background-color: #003b95;
+    color: #ffffff;
+    padding: 2px 2px;
+    border-radius: 2px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.orangeHighlight {
+    color: #ffffff;
+    background-color: #ed6c02;
+    padding: 2px 2px;
+    border-radius: 2px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.greenHighlight {
+    background-color: #2e7d32;
+    color: #ffffff;
+    padding: 2px 2px;
+    border-radius: 2px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.redHighlight {
+    background-color: #d4111e;
+    color: #ffffff;
+    padding: 2px 2px;
+    border-radius: 2px;
+    display: block;
+    margin-bottom: 2px;
+}

@@ -51,7 +51,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           p: 3,
           mt: "64px", // Push content down (same height as AppBar)
           mb: "50px", // Space for footer
-          overflowY: "auto"
+          overflowY: "auto",
+          fontSize: "12px"
         }}
       >
         <Container maxWidth="lg">{children}</Container>

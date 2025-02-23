@@ -14,6 +14,7 @@ interface DateRangePickerProps {
 const DateRangePicker: React.FC<DateRangePickerProps> = ({ checkIn, checkOut, setCheckIn, setCheckOut }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <br/>
       <Box sx={{ display: "flex", gap: 2 }}>
         {/* Check-in Date Picker */}
         <DatePicker

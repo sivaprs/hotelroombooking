@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import LocationService from "../services/locationService";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 interface LocationFilterProps {
   selectedLocation: number;
@@ -12,7 +13,6 @@ interface Location {
     name: string;
   }
 
-//const locations = ["New York", "Los Angeles", "Chicago", "Miami", "San Francisco"];
 
 const LocationFilter: React.FC<LocationFilterProps> = ({ selectedLocation, onChange }) => {
 
@@ -40,10 +40,10 @@ const LocationFilter: React.FC<LocationFilterProps> = ({ selectedLocation, onCha
         value={selectedLocation}
         onChange={(event) => onChange(Number(event.target.value))}
       >
-       
+          
         {locations.length > 0 &&  locations.map((location) => (
           <MenuItem key={location._id} value={location._id}>
-            {location.name}
+           <LocationOnIcon color="secondary" /> {location.name}
           </MenuItem>
         ))}
       </Select>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Tabs, Tab, Box, Typography } from "@mui/material";
 import axios from "axios";
 import LocationFilter from "../components/LocationFilter";
 import HotelCard from "../components/HotelCard";
@@ -14,16 +15,14 @@ interface Hotel {
 
 
 const HotelList: React.FC = () => {
+
+ 
+
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [location, setLocation] = useState("");
 
 
   const [selectedLocation, setSelectedLocation] = useState<number>(0);
-
-  // Filter hotels by selected location
-//  const filteredHotels = selectedLocation
-//    ? hotels.filter((hotel) => hotel.location === selectedLocation)
-//    : hotels;
 
   useEffect(() => {
     fetchHotels();
@@ -53,11 +52,8 @@ const HotelList: React.FC = () => {
     }
   };
 
-  const handleSearch = () => {
-    fetchHotels(selectedLocation);
-  };
-
-  return (
+ 
+ return (
     <div>
       <LocationFilter selectedLocation={selectedLocation} onChange={setSelectedLocation} />
 

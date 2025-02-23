@@ -3,6 +3,8 @@ import Booking from "../models/booking.model";
 import Hotel from "../models/hotel.model";
 import Location from "../models/location.model";
 
+
+
 export const createBooking = async (req: Request, res: Response) => {
   try {
     const booking = new Booking(req.body);
@@ -28,9 +30,9 @@ export const getBookings = async (req: Request, res: Response) => {
         userId: bookings?.userId,
         hotelName: hotel?.name,
         locationName: location?.name,
+        status:bookings?.status
     }
-    console.log("result", result)
-
+   
     res.json(result);
   } catch (error:any) {
     res.status(500).json({ error: error.message });
@@ -40,7 +42,27 @@ export const getBookings = async (req: Request, res: Response) => {
 export const getUserBookings = async (req: Request, res: Response) => {
     try {
       const bookings = await Booking.find({ userId: req.params.userId });
-      res.json(bookings);
+
+      let result = await Promise.all(bookings.map(async(booking) => {
+        const hotel = await Hotel.findOne({ _id: booking?.hotelId });
+        const location = await Location.findOne({ _id: hotel?.location });
+        return {
+            bookingId: booking?.bookingId,
+            hotelId: booking?.hotelId,
+            checkInDate: booking?.checkInDate,
+            checkOutDate: booking?.checkOutDate,
+            rooms: booking?.rooms,
+            roomsAvailable: hotel?.roomsAvailable,
+            userId: booking?.userId,
+            hotelName: hotel?.name,
+            locationName: location?.name,
+            status:booking?.status
+        };
+        
+
+      }));     
+    
+      res.json(result);
     } catch (error:any) {
       res.status(500).json({ error: error.message });
     }
@@ -57,7 +79,7 @@ export const updateBooking = async (req: Request, res: Response) => {
 
 export const cancelBooking = async (req: Request, res: Response) => {
   try {
-    await Booking.findOneAndUpdate({bookingId:req.params.id}, req.body, { new: true } );
+    await Booking.findOneAndDelete({bookingId:req.params.id}, req.body);
     res.json({ message: "Booking cancelled" });
   } catch (error:any) {
     res.status(500).json({ error: error.message });

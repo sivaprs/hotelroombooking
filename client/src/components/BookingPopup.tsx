@@ -1,13 +1,12 @@
-import React, {act, ReactElement, useState} from "react";
+import React, {useState} from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Snackbar } from "@mui/material";
 import DateRangePicker from "./DateRangePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 import bookingService from "../services/bookingService";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-interface PopupProps {
+interface BookingPopupProps {
   open: boolean;
   onClose: () => void;
   title: string;
@@ -18,6 +17,7 @@ interface PopupProps {
   checkInDate?: Date,
   checkOutDate?: Date,
   rooms?: number;
+  location: string;
 }
 
 interface Bookings {
@@ -26,30 +26,35 @@ interface Bookings {
     checkOutDate: Date,
     hotelId: number,
     userId: string,
-    rooms: number
+    rooms: number,
+    status: string
 }
 
-const Popup: React.FC<PopupProps> = ({ open, onClose, title, content, hotelId, action, bookingId, checkInDate,checkOutDate, rooms  }) => {
+const BookingPopup: React.FC<BookingPopupProps> = ({ open, onClose, title, hotelId, action, bookingId, checkInDate,checkOutDate, rooms, location  }) => {
     const [checkIn, setCheckIn] = useState<Dayjs | null>(dayjs(checkInDate));
     const [checkOut, setCheckOut] = useState<Dayjs | null>(dayjs(checkOutDate));
     const [selectedRoom, setSelectedRoom] = useState<number>(rooms || 0);
+     const [opens, setOpens] = useState(false);
+    
+       const handleOpen = () => setOpens(true);
+       const handleClose = () => {
+             setOpens(false);
+       };
     const onConfirm = async() => {
-        console.log("checkin", checkIn?.format("DD/MM/YYYY"));
-        console.log("checkOut", checkOut?.format("DD/MM/YYYY"));
-        
-        console.log("selectedRoom", selectedRoom);
+
         if(action === "create") {
             let obj:Bookings = {
                 checkInDate: dayjs(checkIn).startOf("day").toDate() ?? new Date(),
                 checkOutDate: dayjs(checkOut).startOf("day").toDate() ?? new Date(),
                 hotelId: hotelId,
                 userId: "demo",
-                rooms: selectedRoom
+                rooms: selectedRoom,
+                status: "BOOKED"
             }
             try {
                 const {data} = await bookingService.createBooking(obj);
-                console.log("data response", data);
-                onClose();
+                //onClose();
+                setOpens(true);
             } catch (e) {
                 console.error(e);
             }
@@ -60,12 +65,14 @@ const Popup: React.FC<PopupProps> = ({ open, onClose, title, content, hotelId, a
                 hotelId: hotelId,
                 bookingId: bookingId,
                 userId: "demo",
-                rooms: selectedRoom
-            }
+                rooms: selectedRoom,
+                status: "BOOKED"
+            };
             try {
                 const {data} = await bookingService.updateBooking(obj);
                 console.log("data response", data);
-                onClose();
+                //onClose();
+                setOpens(true);
             } catch (e) {
                 console.error(e);
             }
@@ -79,14 +86,19 @@ const Popup: React.FC<PopupProps> = ({ open, onClose, title, content, hotelId, a
 
 
   return (
+    <>
+    <Snackbar
+            open={opens}
+            autoHideDuration={10000}
+            onClose={handleClose}
+            message={action === "create" ? "Booking created successfully": "Booking updated successfully"}
+          />
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>{title}{hotelId}</DialogTitle>
+      <DialogTitle>{title}  <LocationOnIcon color="secondary"/>{location}</DialogTitle>
       <DialogContent>
-        <Typography>
-             <LocalizationProvider dateAdapter={AdapterDayjs}>
-             <DateRangePicker checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
-            </LocalizationProvider>
-            <FormControl className="">
+        <DateRangePicker checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} />
+            <br/>
+            <FormControl sx={{ width: "40%" }}>
             <InputLabel>Number of rooms</InputLabel>
             <Select value={selectedRoom} onChange={handleChange}>
                 <MenuItem value="1">1</MenuItem>
@@ -95,15 +107,14 @@ const Popup: React.FC<PopupProps> = ({ open, onClose, title, content, hotelId, a
                 <MenuItem value="4">4</MenuItem>
             </Select>
            </FormControl>
-        </Typography>
-        
       </DialogContent>
       <DialogActions>
-        <Button onClick={onConfirm} color="primary">Confirm</Button>
-        <Button onClick={onClose} color="primary">Close</Button>
+        <Button onClick={onConfirm} color="primary" variant="contained">{action === "create"? "Confirm Booking" : "Update Booking"}</Button>
+        <Button onClick={onClose} color="success" variant="contained">Close</Button>
       </DialogActions>
     </Dialog>
+    </>
   );
 };
 
-export default Popup;
+export default BookingPopup;
