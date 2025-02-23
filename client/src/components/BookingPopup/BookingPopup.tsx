@@ -14,6 +14,7 @@ import bookingService from "../../services/bookingService";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { BookingPopupProps, Bookings } from "./interface";
 import { USER_ID, BOOKING_STATUS, BOOKING_ACTION } from "../../constants";
+import "./BookingPopup.css";
 
 const BookingPopup: React.FC<BookingPopupProps> = ({
   open,
@@ -101,7 +102,7 @@ const BookingPopup: React.FC<BookingPopupProps> = ({
             setCheckOut={setCheckOut}
           />
           <br />
-          <FormControl sx={{ width: "40%" }}>
+          <FormControl className="width-40">
             <InputLabel>Number of rooms</InputLabel>
             <Select value={selectedRoom} onChange={handleChange}>
               <MenuItem value="1">1</MenuItem>

@@ -8,6 +8,7 @@ import hotel1 from "../../assets/images/hotel1.jpg";
 import "../../assets/styles/common.css";
 import { Hotel } from "./interface";
 import { BOOKING_ACTION, CURRENCY } from "../../constants";
+import "./HotelCard.css";
 
 function HotelBox(props: Hotel) {
   const [selectedHotel, setSelectedHotel] = useState<{
@@ -17,10 +18,10 @@ function HotelBox(props: Hotel) {
 
   return (
     <>
-      <Card sx={{ height: 230, marginTop: 2 }}>
+      <Card className="hotel-card">
         <CardContent>
           <Box display="flex" justifyContent="space-between">
-            <Box flex="0 0 30%">
+            <Box className="flex-30">
               <img
                 src={`/assets/images/${props.name}.jpg`}
                 width={"200"}
@@ -28,8 +29,8 @@ function HotelBox(props: Hotel) {
                 alt="hotel"
               />
             </Box>
-            <Box flex="0 0 70%" display="flex">
-              <Box justifyContent="flex-start" flex="0 0 70%">
+            <Box className="flex-70" display="flex">
+              <Box justifyContent="flex-start" className="flex-70">
                 <p className="heading">
                   {props.name}
                   <Rating value={props.rating} readOnly />
@@ -40,7 +41,7 @@ function HotelBox(props: Hotel) {
                   <li>Free Wifi</li>
                 </ul>
               </Box>
-              <Box justifyContent="flex-end" flex="0 0 30%">
+              <Box justifyContent="flex-end" className="flex-30">
                 <p>
                   <LocationOnIcon color="secondary" />
                   {props.location}

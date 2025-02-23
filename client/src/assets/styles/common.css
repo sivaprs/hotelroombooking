@@ -50,3 +50,23 @@
   border-radius: 2px;
   margin-bottom: 2px;
 }
+
+.datePicker {
+  display: "flex";
+  gap: 2;
+}
+
+.layout {
+  display: "flex";
+  flex-direction: "column";
+  height: "100vh";
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 3px;
+  margin-top: "64px";
+  margin-bottom: "50px";
+  overflow-y: "auto";
+  font-size: "12px";
+}

@@ -14,6 +14,7 @@ import ConfirmationModel from "../common/ConfirmationModel";
 import bookingService from "../../services/bookingService";
 import { Hotel, Bookings } from "./interface";
 import { USER_ID, BOOKING_STATUS } from "../../constants";
+import "./BookedCard.css";
 
 const formatDate = (dateString: string): string => {
   return dateString?.split("T")[0];
@@ -57,10 +58,10 @@ function BookedCard(props: Hotel) {
         onClose={handleClose}
         message="Booking cancelled successfully"
       />
-      <Card sx={{ height: 245, marginTop: 2 }}>
+      <Card className="hotel-card">
         <CardContent>
           <Box display="flex" justifyContent="space-between">
-            <Box flex="0 0 30%">
+            <Box className="flex-30">
               <img
                 src={`/assets/images/${props.name}.jpg`}
                 width={"200"}
@@ -68,8 +69,8 @@ function BookedCard(props: Hotel) {
                 alt="hotel"
               />
             </Box>
-            <Box flex="0 0 70%" display="flex">
-              <Box justifyContent="flex-start" flex="0 0 60%">
+            <Box className="flex-70" display="flex">
+              <Box justifyContent="flex-start" className="flex-60">
                 <p className="heading">
                   {props.name}
                   <Rating value={props.rating} readOnly />
@@ -80,7 +81,7 @@ function BookedCard(props: Hotel) {
                   <li>Free Wifi</li>
                 </ul>
               </Box>
-              <Box justifyContent="flex-end" flex="0 0 40%">
+              <Box justifyContent="flex-end" className="flex-40">
                 <p>
                   <LocationOnIcon color="secondary" />
                   {props.location}
@@ -118,7 +119,6 @@ function BookedCard(props: Hotel) {
             {props.status !== BOOKING_STATUS.CANCELED && (
               <Button
                 variant="contained"
-                sx={{ mt: 2 }}
                 onClick={() =>
                   setSelectedHotel({
                     title: props.name,
@@ -133,7 +133,6 @@ function BookedCard(props: Hotel) {
             {props.status !== BOOKING_STATUS.CANCELED && (
               <Button
                 variant="contained"
-                sx={{ mt: 2 }}
                 color="warning"
                 onClick={() => setCancel(true)}
               >

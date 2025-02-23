@@ -3,6 +3,7 @@ import { Dayjs } from "dayjs";
 import { Box } from "@mui/material";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "../../assets/styles/common.css";
 
 interface DateRangePickerProps {
   checkIn: Dayjs | null;
@@ -20,13 +21,12 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <br />
-      <Box sx={{ display: "flex", gap: 2 }}>
+      <Box className="datePicker">
         {/* Check-in Date Picker */}
         <DatePicker
           label="Check-in"
           value={checkIn}
           onChange={(newDate) => setCheckIn(newDate)}
-          // renderInput={(params) => <TextField {...params} fullWidth />}
         />
 
         {/* Check-out Date Picker */}
@@ -34,8 +34,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
           label="Check-out"
           value={checkOut}
           onChange={(newDate) => setCheckOut(newDate)}
-          // minDate={checkIn} // Prevent selecting a check-out date before check-in
-          //  renderInput={(params) => <TextField {...params} fullWidth />}
         />
       </Box>
     </LocalizationProvider>

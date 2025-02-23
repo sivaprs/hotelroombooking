@@ -1,0 +1,12 @@
+.hotel-card {
+  margin-top: 5px;
+  height: 230px;
+}
+
+.flex-30 {
+  flex: 0 0 30%;
+}
+
+.flex-70 {
+  flex: 0 0 70%;
+}
