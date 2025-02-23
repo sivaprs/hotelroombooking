@@ -29,6 +29,9 @@ DB Store - MongoDB
 
 MongoDB collections are in the db-collection folder
 
+### Dockerization
+   Both client and server applications are dockerized.
+
 ### Other details
 Application screen shots are in the application-screenshot folder.
 
