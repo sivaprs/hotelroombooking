@@ -36,9 +36,12 @@ Application screen shots are in the application-screenshot folder.
 1. React Application is in client folder - instrcution to start the application provided in the readem file in client folder
 2. Node/Express Application in server folder - instrcution to start the application provided in the readem file in server folder
 3. DB details
+   
     a. Create a DB named "hotelbooking" in the MongoDB.
+   
     b. Import all the collection in db-collections folder into the "hotelbooking" DB.
-4. Currently as the login flow is not implemented the "demo" userid is hardcoded in the application.   
+   
+5. Currently as the login flow is not implemented the "demo" userid is hardcoded in the application.   
 
 
 
