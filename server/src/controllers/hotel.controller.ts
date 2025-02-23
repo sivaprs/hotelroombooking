@@ -42,8 +42,13 @@ export const getHotelsByLocation = async (req: Request, res: Response) => {
     const locations: any = await Location.findOne({ _id: id });
 
     res.json({ hotels, locationName: locations.name });
-  } catch (error: any) {
-    logger.error("hotel fetch by location failed", error.message);
-    res.status(500).json({ error: error.message });
+  } catch (error: unknown) {
+    logger.error(
+      "hotel fetch by location failed",
+      error instanceof Error ? error.message : error
+    );
+    res
+      .status(500)
+      .json({ error: error instanceof Error ? error.message : error });
   }
 };

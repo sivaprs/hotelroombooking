@@ -7,6 +7,7 @@ import hotel1 from "../../assets/images/hotel1.jpg";
 //import hotel3 from "../assets/images/hotel3.jpg"
 import "../../assets/styles/common.css";
 import { Hotel } from "./interface";
+import { BOOKING_ACTION, CURRENCY } from "../../constants";
 
 function HotelBox(props: Hotel) {
   const [selectedHotel, setSelectedHotel] = useState<{
@@ -20,13 +21,18 @@ function HotelBox(props: Hotel) {
         <CardContent>
           <Box display="flex" justifyContent="space-between">
             <Box flex="0 0 30%">
-              <img src={hotel1} width={"200"} height={"125"} alt="hotel" />
+              <img
+                src={`/assets/images/${props.name}.jpg`}
+                width={"200"}
+                height={"125"}
+                alt="hotel"
+              />
             </Box>
             <Box flex="0 0 70%" display="flex">
               <Box justifyContent="flex-start" flex="0 0 70%">
                 <p className="heading">
                   {props.name}
-                  <Rating value={4} readOnly />
+                  <Rating value={props.rating} readOnly />
                 </p>
                 <p className="type">Delux Room</p>
                 <ul className="description">
@@ -40,7 +46,9 @@ function HotelBox(props: Hotel) {
                   {props.location}
                 </p>
                 <p className="rate">
-                  <b>Rs. 2000 per Night</b>
+                  <b>
+                    {CURRENCY} {props.price} per Night
+                  </b>
                 </p>
               </Box>
             </Box>
@@ -69,7 +77,7 @@ function HotelBox(props: Hotel) {
           content={selectedHotel.content}
           hotelId={props.id}
           location={props.location}
-          action="create"
+          action={BOOKING_ACTION.CREATE}
         />
       )}
     </>

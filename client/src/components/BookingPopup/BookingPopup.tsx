@@ -13,7 +13,7 @@ import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 import bookingService from "../../services/bookingService";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { BookingPopupProps, Bookings } from "./interface";
-import { USER_ID } from "../../constants";
+import { USER_ID, BOOKING_STATUS, BOOKING_ACTION } from "../../constants";
 
 const BookingPopup: React.FC<BookingPopupProps> = ({
   open,
@@ -35,14 +35,14 @@ const BookingPopup: React.FC<BookingPopupProps> = ({
     setOpens(false);
   };
   const onConfirm = async () => {
-    if (action === "create") {
+    if (action === BOOKING_ACTION.CREATE) {
       let obj: Bookings = {
         checkInDate: dayjs(checkIn).startOf("day").toDate() ?? new Date(),
         checkOutDate: dayjs(checkOut).startOf("day").toDate() ?? new Date(),
         hotelId: hotelId,
         userId: USER_ID,
         rooms: selectedRoom,
-        status: "BOOKED",
+        status: BOOKING_STATUS.BOOKED,
       };
       try {
         await bookingService.createBooking(obj);
@@ -59,7 +59,7 @@ const BookingPopup: React.FC<BookingPopupProps> = ({
         bookingId: bookingId,
         userId: USER_ID,
         rooms: selectedRoom,
-        status: "BOOKED",
+        status: BOOKING_STATUS.BOOKED,
       };
       try {
         const { data } = await bookingService.updateBooking(obj);
@@ -83,7 +83,7 @@ const BookingPopup: React.FC<BookingPopupProps> = ({
         autoHideDuration={10000}
         onClose={handleClose}
         message={
-          action === "create"
+          action === BOOKING_ACTION.CREATE
             ? "Booking created successfully"
             : "Booking updated successfully"
         }
@@ -113,7 +113,9 @@ const BookingPopup: React.FC<BookingPopupProps> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={onConfirm} color="primary" variant="contained">
-            {action === "create" ? "Confirm Booking" : "Update Booking"}
+            {action === BOOKING_ACTION.CREATE
+              ? "Confirm Booking"
+              : "Update Booking"}
           </Button>
           <Button onClick={onClose} color="success" variant="contained">
             Close

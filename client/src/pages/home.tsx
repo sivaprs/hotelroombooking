@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import LocationFilter from "../components/LocationFilter/LocationFilter";
 import HotelCard from "../components/HotelCard/HotelCard";
 import hotelService from "../services/hotelService";
@@ -18,14 +18,10 @@ const HotelList: React.FC = () => {
   const [selectedLocation, setSelectedLocation] = useState<number>(0);
 
   useEffect(() => {
-    fetchHotels();
-  }, []);
-
-  useEffect(() => {
     fetchHotels(selectedLocation);
   }, [selectedLocation]);
 
-  const fetchHotels = async (location: number = 0) => {
+  const fetchHotels = useCallback(async (location: number = 0) => {
     try {
       if (location === 0) {
         const { data } = await hotelService.getHotels();
@@ -40,7 +36,7 @@ const HotelList: React.FC = () => {
     } catch (error) {
       console.error("Error fetching hotels:", error);
     }
-  };
+  }, []);
 
   return (
     <div>
@@ -56,6 +52,8 @@ const HotelList: React.FC = () => {
             id={hotel._id}
             location={hotel.locationName || location}
             description={hotel.locationName}
+            rating={Number(hotel.rating)}
+            price={Number(hotel.price)}
           />
         ))
       ) : (

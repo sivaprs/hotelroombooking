@@ -9,12 +9,11 @@ import {
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Popup from "../BookingPopup/BookingPopup";
-import hotel1 from "../../assets/images/hotel1.jpg";
 import "../../assets/styles/common.css";
 import ConfirmationModel from "../common/ConfirmationModel";
 import bookingService from "../../services/bookingService";
 import { Hotel, Bookings } from "./interface";
-import { USER_ID } from "../../constants";
+import { USER_ID, BOOKING_STATUS } from "../../constants";
 
 const formatDate = (dateString: string): string => {
   return dateString?.split("T")[0];
@@ -39,11 +38,10 @@ function BookedCard(props: Hotel) {
       bookingId: props.bookingid,
       userId: USER_ID,
       rooms: props.rooms || 0,
-      status: "CANCELED",
+      status: BOOKING_STATUS.CANCELED,
     };
     try {
       const { data } = await bookingService.updateBooking(obj);
-      console.log("data response", data);
       setOpen(true);
       setCancel(false);
     } catch (e) {
@@ -63,13 +61,18 @@ function BookedCard(props: Hotel) {
         <CardContent>
           <Box display="flex" justifyContent="space-between">
             <Box flex="0 0 30%">
-              <img src={hotel1} width={"200"} height={"125"} alt="hotel" />
+              <img
+                src={`/assets/images/${props.name}.jpg`}
+                width={"200"}
+                height={"125"}
+                alt="hotel"
+              />
             </Box>
             <Box flex="0 0 70%" display="flex">
               <Box justifyContent="flex-start" flex="0 0 60%">
                 <p className="heading">
                   {props.name}
-                  <Rating value={4} readOnly />
+                  <Rating value={props.rating} readOnly />
                 </p>
                 <p className="type">Delux Room</p>
                 <ul className="description">
@@ -82,44 +85,61 @@ function BookedCard(props: Hotel) {
                   <LocationOnIcon color="secondary" />
                   {props.location}
                 </p>
-                <span className="blueHighlight">
-                  Dates:{" "}
-                  <b>
+                <p>
+                  <span className="blueHighlight">
+                    <b>Dates: </b>
                     {formatDate(props.checkInDate.toString())} to{" "}
                     {formatDate(props.checkOutDate.toString())}
-                  </b>
-                </span>
-                <span className="orangeHighlight">
-                  Number of Rooms: <b>4</b>
-                </span>
-                <span className="greenHighlight">
-                  Status: <b>BOOKED</b>
-                </span>
+                  </span>
+                </p>
+                <p>
+                  <span className="orangeHighlight">
+                    <b>Rooms: </b>
+                    {props.rooms}
+                  </span>
+                </p>
+                <p>
+                  <span
+                    className={
+                      props.status == BOOKING_STATUS.CANCELED
+                        ? "redHighlight"
+                        : "greenHighlight"
+                    }
+                  >
+                    {" "}
+                    <b>Status: </b>
+                    {props.status}
+                  </span>
+                </p>
               </Box>
             </Box>
           </Box>
           <Box display="flex" justifyContent="flex-end">
-            <Button
-              variant="contained"
-              sx={{ mt: 2 }}
-              onClick={() =>
-                setSelectedHotel({
-                  title: props.name,
-                  content: props.description,
-                })
-              }
-            >
-              Edit Booking
-            </Button>
+            {props.status !== BOOKING_STATUS.CANCELED && (
+              <Button
+                variant="contained"
+                sx={{ mt: 2 }}
+                onClick={() =>
+                  setSelectedHotel({
+                    title: props.name,
+                    content: props.description,
+                  })
+                }
+              >
+                Edit Booking
+              </Button>
+            )}
             &nbsp;
-            <Button
-              variant="contained"
-              sx={{ mt: 2 }}
-              color="warning"
-              onClick={() => setCancel(true)}
-            >
-              Cancel Booking
-            </Button>
+            {props.status !== BOOKING_STATUS.CANCELED && (
+              <Button
+                variant="contained"
+                sx={{ mt: 2 }}
+                color="warning"
+                onClick={() => setCancel(true)}
+              >
+                Cancel Booking
+              </Button>
+            )}
           </Box>
         </CardContent>
       </Card>

@@ -6,8 +6,13 @@ export const getLocations = async (req: Request, res: Response) => {
   try {
     const locations = await Location.find({});
     res.json(locations);
-  } catch (error: any) {
-    logger.error("Location fetch failed", error.message);
-    res.status(500).json({ error: error.message });
+  } catch (error: unknown) {
+    logger.error(
+      "Location fetch failed",
+      error instanceof Error ? error.message : error
+    );
+    res
+      .status(500)
+      .json({ error: error instanceof Error ? error.message : error });
   }
 };

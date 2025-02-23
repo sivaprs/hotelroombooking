@@ -8,6 +8,8 @@ test("renders learn react link", () => {
       location="Chennai - TamilNadu - India"
       id={1}
       description="Delux hotel"
+      rating={1}
+      price={1000}
     />
   );
   const element = screen.getByText(/best hotel/i);

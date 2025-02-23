@@ -5,6 +5,8 @@ interface IHotel {
   name: string;
   location: number;
   roomsAvailable: number;
+  rating: number;
+  price: number;
 }
 
 const hotelSchema = new mongoose.Schema<IHotel>({
@@ -12,6 +14,8 @@ const hotelSchema = new mongoose.Schema<IHotel>({
   name: { type: String, required: true },
   location: { type: Number, ref: "Location", required: true },
   roomsAvailable: { type: Number, required: true },
+  rating: { type: Number, required: true },
+  price: { type: Number, required: true },
 });
 
 const Hotel = mongoose.model<IHotel>("Hotels", hotelSchema);

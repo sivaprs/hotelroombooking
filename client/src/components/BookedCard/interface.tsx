@@ -7,6 +7,8 @@ export interface Hotel {
   description: string;
   location: string;
   rooms: number;
+  status: string;
+  rating: number;
 }
 
 export interface Bookings {

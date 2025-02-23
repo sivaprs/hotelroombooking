@@ -32,12 +32,18 @@ export const getBookings = async (req: Request, res: Response) => {
       hotelName: hotel?.name,
       locationName: location?.name,
       status: bookings?.status,
+      rating: hotel?.rating,
     };
 
     res.json(result);
-  } catch (error: any) {
-    logger.error("Booking fetch failed", error.message);
-    res.status(500).json({ error: error.message });
+  } catch (error: unknown) {
+    logger.error(
+      "Booking fetch failed",
+      error instanceof Error ? error.message : error
+    );
+    res
+      .status(500)
+      .json({ error: error instanceof Error ? error.message : error });
   }
 };
 
@@ -60,14 +66,20 @@ export const getUserBookings = async (req: Request, res: Response) => {
           hotelName: hotel?.name,
           locationName: location?.name,
           status: booking?.status,
+          rating: hotel?.rating,
         };
       })
     );
 
     res.json(result);
-  } catch (error: any) {
-    logger.error("Booking fetch failed", error.message);
-    res.status(500).json({ error: error.message });
+  } catch (error: unknown) {
+    logger.error(
+      "Booking fetch failed",
+      error instanceof Error ? error.message : error
+    );
+    res
+      .status(500)
+      .json({ error: error instanceof Error ? error.message : error });
   }
 };
 
@@ -79,9 +91,14 @@ export const updateBooking = async (req: Request, res: Response) => {
       { new: true }
     );
     res.json(updatedBooking);
-  } catch (error: any) {
-    logger.error("Booking update failed", error.message);
-    res.status(500).json({ error: error.message });
+  } catch (error: unknown) {
+    logger.error(
+      "Booking update failed",
+      error instanceof Error ? error.message : error
+    );
+    res
+      .status(500)
+      .json({ error: error instanceof Error ? error.message : error });
   }
 };
 
@@ -89,8 +106,13 @@ export const cancelBooking = async (req: Request, res: Response) => {
   try {
     await Booking.findOneAndDelete({ bookingId: req.params.id }, req.body);
     res.json({ message: "Booking cancelled" });
-  } catch (error: any) {
-    logger.error("Booking cancel failed", error.message);
-    res.status(500).json({ error: error.message });
+  } catch (error: unknown) {
+    logger.error(
+      "Booking cancel failed",
+      error instanceof Error ? error.message : error
+    );
+    res
+      .status(500)
+      .json({ error: error instanceof Error ? error.message : error });
   }
 };
