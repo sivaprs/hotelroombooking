@@ -1,0 +1,171 @@
+[{
+  "_id": {
+    "$oid": "67b960bca7b521021bc3e2d9"
+  },
+  "userId": "demo",
+  "hotelId": "3",
+  "checkInDate": {
+    "$date": "2025-02-23T18:30:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-24T18:30:00.000Z"
+  },
+  "rooms": 4,
+  "bookingId": 1,
+  "__v": 0,
+  "status": "CANCELED"
+},
+{
+  "_id": {
+    "$oid": "67b96b514bf1f80a23c68e20"
+  },
+  "userId": "demo",
+  "hotelId": "4",
+  "checkInDate": {
+    "$date": "2025-02-25T18:30:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-26T18:30:00.000Z"
+  },
+  "rooms": 1,
+  "bookingId": 2,
+  "__v": 0,
+  "status:": "BOOKED",
+  "status": "CANCELED"
+},
+{
+  "_id": {
+    "$oid": "67b972a48c3d0c5df71b052a"
+  },
+  "userId": "demo",
+  "hotelId": "3",
+  "checkInDate": {
+    "$date": "2025-02-22T06:45:49.268Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-22T06:45:49.268Z"
+  },
+  "rooms": 2,
+  "bookingId": 3,
+  "__v": 0,
+  "status": "CANCELED"
+},
+{
+  "_id": {
+    "$oid": "67b972b58c3d0c5df71b052d"
+  },
+  "userId": "demo",
+  "hotelId": "3",
+  "checkInDate": {
+    "$date": "2025-02-22T06:46:09.004Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-22T06:46:09.004Z"
+  },
+  "rooms": 4,
+  "bookingId": 4,
+  "__v": 0,
+  "status": "CANCELED"
+},
+{
+  "_id": {
+    "$oid": "67ba8726205c14ac5f470717"
+  },
+  "userId": "demo",
+  "hotelId": "2",
+  "checkInDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "rooms": 4,
+  "status": "CANCELED",
+  "bookingId": 12,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ba8783a1333d952da4317f"
+  },
+  "userId": "demo",
+  "hotelId": "2",
+  "checkInDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "rooms": 4,
+  "status": "BOOKED",
+  "bookingId": 13,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ba8a8df196f91bc1bf17d0"
+  },
+  "userId": "demo",
+  "hotelId": "2",
+  "checkInDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "rooms": 4,
+  "status": "CANCELED",
+  "bookingId": 14,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ba8bd27b9fabfd796d11c0"
+  },
+  "userId": "demo",
+  "hotelId": "2",
+  "checkInDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "rooms": 4,
+  "status": "BOOKED",
+  "bookingId": 15,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ba8cd5694d0c73c3ab29c1"
+  },
+  "userId": "demo",
+  "hotelId": "2",
+  "checkInDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "rooms": 4,
+  "status": "BOOKED",
+  "bookingId": 16,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ba8d06329de4b4696d0083"
+  },
+  "userId": "demo",
+  "hotelId": "2",
+  "checkInDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-02-22T18:30:00.000Z"
+  },
+  "rooms": 4,
+  "status": "BOOKED",
+  "bookingId": 17,
+  "__v": 0
+}]
